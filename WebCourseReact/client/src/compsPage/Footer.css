@@ -1,0 +1,40 @@
+.footer{
+    background-color: #07111a;
+}
+
+.img-left {
+    float: left;
+    margin: 7px 50px 7px 7px;
+
+}
+
+div .footer-1{
+    border-bottom: 1px solid white;
+}
+
+div .footer-2, .footer-1{
+    width: 70%;
+    color: white;
+    margin-left: 15%;
+    padding: 30px 0 30px 0;
+}
+
+div .footer-2{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+div .messengeres{
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn-request{
+    border: 1px solid orange;
+    background-color: #07111a;
+    color: white;
+    padding: 20px;
+}

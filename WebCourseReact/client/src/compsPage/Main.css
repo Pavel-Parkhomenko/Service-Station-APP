@@ -1,0 +1,14 @@
+main {
+    width: 70%;
+    margin-left: 15%;
+}
+
+.img-left {
+    float: left;
+    margin: 7px 50px 7px 7px;
+
+}
+
+.container-img-text {
+    font-size: 20px;
+}
