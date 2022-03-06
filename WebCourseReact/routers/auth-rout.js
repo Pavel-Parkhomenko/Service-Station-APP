@@ -1,50 +1,77 @@
 const { Router } = require('express');
 const User = require('../models/User');
+const { check, validationResult } = require('express-validator')
 
 const router = Router();
 
-// app.get('/login', (req, res) => {
-//   res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' }); //Line 10
-// });
+router.post('/login',
+    [check('login', 'Неверный логин').isLength({ min: 5, max: 15 }),
+    check('password', 'Неверный пароль').isLength({ min: 5, max: 15 })],
+    async (req, res) => {
+        try {
+            let errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({
+                    errors: errors.array(),
+                    message: "Некоректные данные при входе"
+                })
+            }
 
-router.post('/login', async (req, res) => {
-    console.log("Body: ", req.body)
+            const { login, password } = req.body;
 
-    const {login, password} = req.body;
+            const user = await User.findOne({ login: login });
+            if (!user) {
+                return res.status(400).json({ message: 'Такого логина не существует' })
+            }
 
-    let condidat = new User({
-        login: login,
-        password: password,
-        rank: "client"
-    })
+            if (password != user.password)
+                return res.status(400).json({ message: 'Пользователя с таким паролем не существует' })
 
-    await condidat.save(function (err) {
-        if (err) {
-            console.log(err);
-            return
+            return res.status(200).json({ login: login, password: password, message: 'Вход выполнен успешно' })
+
         }
-        console.log("save");
-    })
-}); 
-
-router.post('/registr', async (req, res) => {
-    console.log("Body: ", req.body)
-
-    const {login, password} = req.body;
-
-    let condidat = new User({
-        login: login,
-        password: password,
-        rank: "client"
-    })
-
-    await condidat.save(function (err) {
-        if (err) {
-            console.log(err);
-            return
+        catch (err) {
+            return res.status(500).json({ message: 'Что-то пошло не так' })
         }
-        console.log("save");
-    })
-}); 
+    });
+
+router.post('/registr',
+    [check('login', 'Неверный логин').isLength({ min: 5, max: 15 }),
+    check('password', 'Неверный пароль').isLength({ min: 5, max: 15 })],
+    async (req, res) => {
+        try {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({
+                    errors: errors.array(),
+                    message: "Некоректные данные при регистрации"
+                })
+            }
+
+            const { login, password } = req.body;
+
+            // const candidate = User.findOne({ login: login })
+            // if (candidate) {
+            //     return res.status(400).json({ message: 'Такой пользователь уже существует' })
+            // }
+
+            const user = new User({
+                login: login,
+                password: password,
+                rank: "client"
+            })
+
+            await user.save(function (err) {
+                if (err)
+                    return res.status(400).json({message: 'Не удалось зарегистровать нового пользователя (err save)'})
+            })
+
+            return res.status(200).json({message: 'Регистрация прошла успешно'})
+
+        }
+        catch (err) {
+            return res.status(500).json({ message: 'Что-то пошло не так' })
+        }
+    });
 
 module.exports = router;
