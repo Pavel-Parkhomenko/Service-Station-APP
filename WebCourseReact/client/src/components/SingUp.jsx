@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './SingUp.css'
 import useHttp from '../hooks/httpHook'
-import Message from './Message';
+import {useDispatch} from 'react-redux'
+import {changeCheckRegistr} from '../store/userSlice'
 
 function Authentication() {
 
-    const { loading, request, error, clearError } = useHttp();
+    const { loading, request } = useHttp();
+    const [errMessage, setErrMessage] = useState('')
+
+    const dispatch = useDispatch();
 
     const [form, setForm] = useState({
         login: '',
@@ -15,45 +19,39 @@ function Authentication() {
 
     async function handelSingUp() {
         const response = await request('/auth/registr', 'POST', { ...form })
+        if(!response.hasOwnProperty('err'))
+            dispatch(changeCheckRegistr())
+            
         console.log(response);
     }
 
     async function handelSingIn() {
         const response = await request('/auth/login', 'POST', { ...form })
+        if(!response.hasOwnProperty('err'))
+            dispatch(changeCheckRegistr())
+
+        setErrMessage(response.message)
+        console.log(response);
     }
 
     function handleInput(event) {
         setForm({ ...form, [event.target.name]: event.target.value })
     }
 
-    useEffect(() => {
-        clearError()
-        console.log(error);
-    }, [error, clearError])
-
-    const flag = false;
-
     return (
         <div className='singUp'>
-            <div hidden={flag}><Message message={error}/></div>
             <div className='form'>
                 <form action="#" method="post">
                     <h2>Регистрация</h2>
-                    <p>
+                    <div>
                         <label className="floatLabel">Login</label>
                         <input name="login" type="text" onChange={handleInput} />
-                    </p>
-                    <p>
+                    </div>
+                    <div>
                         <label className="floatLabel">Password</label>
                         <input name="password" type="password" onChange={handleInput} />
-                        {/* <span>Пароль должен содержать</span> */}
-                    </p>
-                    {/* <p>
-                    <label for="confirm_password" class="floatLabel">Confirm Password</label>
-                    <input id="confirm_password" name="confirm_password" type="password" />
-                    <span>Пароли не совпадают</span>
-                </p> */}
-
+                        {errMessage ? <span className='errMess-span'>{errMessage}</span> : <span></span>}
+                    </div>
                 </form>
                 <div className='btns-container'>
                     <button onClick={handelSingUp} disabled={loading} className="btn registr">Регистрация</button>

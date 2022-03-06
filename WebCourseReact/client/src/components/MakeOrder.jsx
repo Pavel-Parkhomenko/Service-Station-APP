@@ -1,11 +1,37 @@
 import React from 'react';
+import './MakeOrder.css'
 
 function MakeOrder() {
-    return ( 
+    return (
         <div>
-            <h1>MakeOrder</h1>
+            <div>
+                <span>ФИО</span>
+                <input type='text'></input>
+            </div>
+            <div>
+                <span>Номер телефона</span>
+                <input type='text'></input>
+            </div>
+            <div>
+                <span>Возможная проблема</span>
+                <select name="" id="">
+
+                </select>
+            </div>
+            <div>
+                <span>Марка</span>
+                <input type='text'></input>
+            </div>
+            <div>
+                <span>Госномер</span>
+                <input type='text'></input>
+            </div>
+            <div>
+                <span>Тип двитателя</span>
+                <input type='text'></input>
+            </div>
         </div>
-     );
+    );
 }
 
 export default MakeOrder;
