@@ -7,15 +7,15 @@ const schems = new Schema({
 /*
 
 
-"auto": {
+{
+    "_id": {
+        "$oid": "621952cebc5d4a6a1c6989d4"
+    },
+    "auto": {
         "yearRelese": "2000",
         "mark": "Lada",
         "typeEngine": "дизель",
         "gosnumber": "AB 9704-7"
-    },
-    "checker": {
-        "fio": "Пархоменко П.Л.",
-        "login": "manager"
     },
     "client": {
         "fio": "Суглобов В.В.",
@@ -30,10 +30,8 @@ const schems = new Schema({
     },
     "payment": "0",
     "status": "Completed",
-    "works": [{
-        "description": "Ремонт двигателя",
-        "cost": "1000"
-    }]
+    "problemText": "что-то стучит"
+}
 
 
 */

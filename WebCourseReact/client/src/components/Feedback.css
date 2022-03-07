@@ -1,0 +1,25 @@
+.feedback-container{
+    width: 25%;
+    box-shadow: 2px 2px 10px 2px rgb(208, 223, 173);
+    display: inline-block;
+    margin-right: 3em;
+    margin-bottom: 10px;
+}
+
+.feedback-photo img{
+    height: 50px;
+    width: 50px;
+}
+
+/* .feedback-text_container{
+    background-color: brown;
+}
+.feedback-text{
+    background-color: blue;
+}*/
+
+.feedback-name{
+    color: green;
+    margin-bottom: 10px;
+    font-weight: bold;
+} 

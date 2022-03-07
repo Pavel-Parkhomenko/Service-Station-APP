@@ -5,6 +5,7 @@ import './Header.css'
 import Footer from '../compsPage/Footer';
 import './Footer.css'
 import useHttp from '../hooks/httpHook'
+import Feedback from '../components/Feedback';
 
 export default function Main(params) {
 
@@ -12,7 +13,7 @@ export default function Main(params) {
 	// const [works, setWorks] = useState([])
 	const works = []
 
-	window.addEventListener('load', async () =>  {
+	window.addEventListener('load', async () => {
 		const response = await request('work//get-works', 'GET')
 		// setWorks([works, ...response.works])
 		// console.log(response.works);
@@ -34,7 +35,7 @@ export default function Main(params) {
 					<p>
 						На станции технического обслуживания в г. Гомель на пр. Речицкий 135 также оказывают услуги по ремонту подвески, шиномонтажу, развалу-схождению, компьютерной диагностике различных систем автомобиля.
 					</p>
-					<p>	Время работы Service Station в г. Гомель:<b> с 9.00 до 19.00 пн.- вс.</b></p>
+					<p  id="main-servise_info">	Время работы Service Station в г. Гомель:<b> с 9.00 до 19.00 пн.- вс.</b></p>
 					<h2 style={{ fontSize: 45 }}>Перечень услуг СТО в Гомеле</h2>
 					<div>
 						<p><strong><em>Двигатель</em></strong></p>
@@ -63,12 +64,21 @@ export default function Main(params) {
 						</ul>
 					</div>
 				</div>
-				<h2>
-					Прейскурант отпускных цен на услуги Service Station в г. Гомель
-				</h2>
-				<table>
-				</table>
-				<h3>*Примечание: прейскурант ориентировочный, стоимость услуг уточняйте на СТО.</h3>
+				<div>
+					<h2>Отзывы наших клиентов</h2>
+					<Feedback/>
+					<Feedback/>
+					<Feedback/>
+					<Feedback displayStyle="block"/>
+				</div>
+				<div id="main-price_table">
+					<h2>
+						Прейскурант отпускных цен на услуги Service Station в г. Гомель
+					</h2>
+					<table>
+					</table>
+					<h3>*Примечание: прейскурант ориентировочный, стоимость услуг уточняйте на СТО.</h3>
+				</div>
 			</main>
 
 			<Footer />

@@ -12,13 +12,15 @@ export default function Menu(params) {
 
     return (
         <div className="content-menu">
-            <div className='btn-order'>
+            <div className='btn-order menu-butons'>
                 <button disabled={!checkRegistr}>
-                    {checkRegistr ? <Link to='/order'>Сделать заказ</Link> : 'Сделать заказ'}
+                    {checkRegistr ? <Link to='/order'>Сделать заказ</Link> : <Link to='/auth'>Сделать заказ</Link>}
                 </button>
             </div>
             <div className="menu-butons">
-                <a href='/auth' style={{ marginRight: 10 }}>Услуги</a>
+                <a href='#main-servise_info' style={{ marginRight: 10 }}>Услуги</a>
+                <a href='#' style={{ marginRight: 10 }}>Отзывы</a>
+                <a href='#main-price_table' style={{ marginRight: 10 }}>Прейскурант</a>
                 {checkRegistr ? <Link to='/client-room'>Личный кабинет</Link> : <Link to='/auth'>Регистрация</Link>}
             </div>
         </div>

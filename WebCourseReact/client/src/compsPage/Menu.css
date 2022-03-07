@@ -1,6 +1,16 @@
 .btn-order{
-    border: 1px solid orange;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5)
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    margin-right: 20px;    
+}
+
+.btn-order button{
+    height: 35px;
+    background: linear-gradient(rgb(178, 233, 171), rgb(245, 184, 72));
+}
+
+.menu-butons a{
+    text-decoration: none;
+    color: rgb(97, 96, 71);
 }
 
 div .content-menu{

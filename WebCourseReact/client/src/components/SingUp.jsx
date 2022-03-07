@@ -27,11 +27,12 @@ function Authentication() {
 
     async function handelSingIn() {
         const response = await request('/auth/login', 'POST', { ...form })
-        if(!response.hasOwnProperty('err'))
+        if(!response.hasOwnProperty('err')){
             dispatch(changeCheckRegistr())
+            document.location.href = "/client-room";
+        }
 
         setErrMessage(response.message)
-        console.log(response);
     }
 
     function handleInput(event) {
