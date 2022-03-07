@@ -1,11 +1,10 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom'
-import App from '../App'
 import Authentication from './SingUp';
 import NotFound from './NotFound';
 import MakeOrder from './MakeOrder';
 import Main from '../compsPage/Main';
-import ClientRoom from '../rooms/ClientRoom';
+import ClientRoom from '../rooms/user/ClientRoom';
 
 export const useRoutes = (isAuth) => {
   return (

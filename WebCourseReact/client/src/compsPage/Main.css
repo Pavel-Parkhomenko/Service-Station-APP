@@ -12,3 +12,19 @@ main {
 .container-img-text {
     font-size: 20px;
 }
+
+.main-ul {
+    list-style: none;
+}
+
+.main-ul>li {
+    margin: 0.25rem;
+}
+
+.main-ul>li::before {
+    content: '🚗';
+    display: inline-block;
+    line-height: 2rem;
+    text-align: center;
+    margin-right: 0.5rem;
+}

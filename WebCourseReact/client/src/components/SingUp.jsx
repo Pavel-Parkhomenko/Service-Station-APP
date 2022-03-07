@@ -40,8 +40,8 @@ function Authentication() {
 
     return (
         <div className='singUp'>
-            <div className='form'>
-                <form action="#" method="post">
+            <div className='registr-form_container'>
+                <form action="#" method="post" id="registr-form">
                     <h2>Регистрация</h2>
                     <div>
                         <label className="floatLabel">Login</label>

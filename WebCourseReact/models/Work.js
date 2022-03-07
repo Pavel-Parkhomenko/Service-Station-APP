@@ -1,9 +1,9 @@
 const {Schema, model} = require('mongoose')
 
 const schema = new Schema({
-    cost: {Type: Number, required: true},
-    description: {Type: String, required: true},
-    name: {Type: String, required: true}
+    cost: {type: Number, required: true},
+    description: {type: String, required: true},
+    name: {type: String, required: true}
 }, { versionKey: false })
 
 module.exports = model('works', schema);

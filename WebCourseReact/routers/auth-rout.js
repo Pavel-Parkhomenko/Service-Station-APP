@@ -50,7 +50,7 @@ router.post('/registr',
 
             const { login, password } = req.body;
 
-            // const candidate = User.findOne({ login: login })
+            // const candidate = await User.findOne({ login: login })
             // if (candidate) {
             //     return res.status(400).json({ message: 'Такой пользователь уже существует' })
             // }

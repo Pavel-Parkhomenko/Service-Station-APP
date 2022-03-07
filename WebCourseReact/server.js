@@ -8,7 +8,7 @@ app.use(bp.json())
 app.use(bp.urlencoded({ extended: true }))
 
 app.use('/auth', require('./routers/auth-rout'))
-app.use('/mark', require('./routers/mark-rout'))
+app.use('/work', require('./routers/work-rout'))
 
 async function start() {
   try {

@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import './Header.css';
 import Menu from './Menu';
 import { Link } from 'react-router-dom'
+import ClientMenu from '../rooms/user/ClientMenu';
 
-export default function Header(params) {
+export default function Header({menu}) {
 
     return (
         <header className="header">
@@ -13,7 +14,7 @@ export default function Header(params) {
             <div className='phone'>
                 <h2 className='phone'>+375 25 6768356</h2>
             </div>
-            <Menu />
+            {menu == 'false' ? <ClientMenu/> : <Menu />}
         </header>
     )
 };

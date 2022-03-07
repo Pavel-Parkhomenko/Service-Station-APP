@@ -1,0 +1,32 @@
+div.client-info_registr{
+    background-color: rgb(124, 212, 121);
+    color: white;
+    height: 30px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+div.client-menu_main{
+    display: flex;
+    align-items: flex-start;
+}
+
+div.client-main{
+    width: 60%;
+    background-color: rgb(212, 235, 211);
+    min-height: 450px;
+}
+
+div.client-menu{
+    width: 20%;
+    background-color: rgb(212, 235, 211);
+    margin-right: 60px;
+    margin-left: 30px;
+}
+
+td{
+    border: 1px solid black;
+}
+.client-table{
+    width: 100%;
+}
