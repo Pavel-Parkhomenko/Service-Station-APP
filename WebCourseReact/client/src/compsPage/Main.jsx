@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './Main.css';
 import Header from '../compsPage/Header';
 import './Header.css'
@@ -10,14 +10,12 @@ import Feedback from '../components/Feedback';
 export default function Main(params) {
 
 	const { loading, request } = useHttp()
-	// const [works, setWorks] = useState([])
-	const works = []
+	const [works, setWorks] = useState([])
 
-	window.addEventListener('load', async () => {
-		const response = await request('work//get-works', 'GET')
-		// setWorks([works, ...response.works])
-		// console.log(response.works);
-	})
+	useEffect(async () => {
+		const response = await request('work/get-works', 'GET');
+		setWorks([...works, ...response.works])
+	}, [])
 
 	return (
 		<>
@@ -76,6 +74,18 @@ export default function Main(params) {
 						Прейскурант отпускных цен на услуги Service Station в г. Гомель
 					</h2>
 					<table>
+						<tbody>
+						<tr>
+							<th>Наименование</th>
+							<th>Описание</th>
+							<th>Стоимость</th>
+						</tr>
+						{works.map((x, ind) => <tr key={ind}>
+							<td>{x.name}</td>
+							<td>{x.description}</td>
+							<td>{x.cost}</td>
+						</tr>)}
+						</tbody>
 					</table>
 					<h3>*Примечание: прейскурант ориентировочный, стоимость услуг уточняйте на СТО.</h3>
 				</div>

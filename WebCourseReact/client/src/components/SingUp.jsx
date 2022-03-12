@@ -1,67 +1,47 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import './SingUp.css'
-import useHttp from '../hooks/httpHook'
-import {useDispatch} from 'react-redux'
-import {changeCheckRegistr} from '../store/userSlice'
 
-function Authentication() {
+function SingUp() {
 
-    const { loading, request } = useHttp();
-    const [errMessage, setErrMessage] = useState('')
+	const [form, setForm] = useState({
+		fio: '',
+		login: '',
+		phone: '',
+		password: '',
+		email: '',
+	})
 
-    const dispatch = useDispatch();
+	function handleInput(event) {
+		setForm({ ...form, [event.target.name]: event.target.value })
+	}
 
-    const [form, setForm] = useState({
-        login: '',
-        password: ''
-    })
+	return (
+		<div className='singUp-container'>
+			<div className="up-container">
+				<form action="#" method="post" id="form">
+					<h1 style={{ textAlign: 'center' }}>&bull; РЕГИСТРАЦИЯ &bull;</h1>
+					<div className="underline"></div>
 
-    async function handelSingUp() {
-        const response = await request('/auth/registr', 'POST', { ...form })
-        if(!response.hasOwnProperty('err'))
-            dispatch(changeCheckRegistr())
-            
-        console.log(response);
-    }
+					<div className='row-container'>
+						<input name='fio' onChange={handleInput} className='input_text' type="text" placeholder='ФИО' required />
+						<input name='phone' onChange={handleInput} className='input_text' type="text" placeholder='Телефон' required />
+					</div>
 
-    async function handelSingIn() {
-        const response = await request('/auth/login', 'POST', { ...form })
-        if(!response.hasOwnProperty('err')){
-            dispatch(changeCheckRegistr())
-            document.location.href = "/client-room";
-        }
+					<div>
+						<input name='email' onChange={handleInput} className='full-width input_text' type="text" placeholder='Email' required />
+					</div>
+					<div>
+						<input name='login' onChange={handleInput} className='full-width input_text' type="text" placeholder='Логин' required />
+					</div>
+					<div>
+						<input name='password' onChange={handleInput} className='full-width input_text' type="text" placeholder='Пароль' required />
+					</div>
 
-        setErrMessage(response.message)
-    }
-
-    function handleInput(event) {
-        setForm({ ...form, [event.target.name]: event.target.value })
-    }
-
-    return (
-        <div className='singUp'>
-            <div className='registr-form_container'>
-                <form action="#" method="post" id="registr-form">
-                    <h2>Регистрация</h2>
-                    <div>
-                        <label className="floatLabel">Login</label>
-                        <input name="login" type="text" onChange={handleInput} />
-                    </div>
-                    <div>
-                        <label className="floatLabel">Password</label>
-                        <input name="password" type="password" onChange={handleInput} />
-                        {errMessage ? <span className='errMess-span'>{errMessage}</span> : <span></span>}
-                    </div>
-                </form>
-                <div className='btns-container'>
-                    <button onClick={handelSingUp} disabled={loading} className="btn registr">Регистрация</button>
-                    <button onClick={handelSingIn} disabled={loading} className="btn singIn">Вход</button>
-                    <Link style={{ fontSize: 14 }} to="/">Назад</Link>
-                </div>
-            </div>
-        </div>
-    );
+					<button className="btn registr">Регистрация</button>
+				</form>
+			</div>
+		</div>
+	);
 }
 
-export default Authentication;
+export default SingUp;

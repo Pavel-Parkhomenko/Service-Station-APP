@@ -1,16 +1,18 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom'
-import Authentication from './SingUp';
+import SingIn from './SingIn';
 import NotFound from './NotFound';
 import MakeOrder from './MakeOrder';
 import Main from '../compsPage/Main';
 import ClientRoom from '../rooms/user/ClientRoom';
+import SingUp from './SingUp';
 
 export const useRoutes = (isAuth) => {
   return (
     <Routes>
       <Route path="/" element={<Main />} />
-      <Route path="/auth" element={<Authentication/>} />
+      <Route path="/auth/login" element={<SingIn/>} />
+      <Route path="/auth/registr" element={<SingUp/>} />
       <Route path="/order" element={<MakeOrder/>} />
       <Route path="/client-room" element={<ClientRoom/>} />
       <Route path="*" element={<NotFound />} />

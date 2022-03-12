@@ -1,12 +1,12 @@
 const { Router } = require('express');
-const User = require('../models/User');
+const User = require('../models/Client');
 const { check, validationResult } = require('express-validator')
 
 const router = Router();
 
 router.post('/login',
     [check('login', 'Неверный логин').isLength({ min: 5, max: 15 }),
-    check('password', 'Неверный пароль').isLength({ min: 5, max: 15 })],
+    check('password', 'Неверный пароль').isLength({ min: 5, max: 15 }),],
     async (req, res) => {
         try {
             let errors = validationResult(req);
@@ -36,8 +36,11 @@ router.post('/login',
     });
 
 router.post('/registr',
-    [check('login', 'Неверный логин').isLength({ min: 5, max: 15 }),
-    check('password', 'Неверный пароль').isLength({ min: 5, max: 15 })],
+    [check('fio', 'Неверное имя').isLength({ min: 1, max: 15 }),
+    check('login', 'Неверный логин').isLength({ min: 5, max: 15 }),
+    check('phone', 'Неверный телефон').isLength({ min: 5, max: 15 }),
+    check('password', 'Неверный пароль').isLength({ min: 5, max: 15 }),
+    check('email', 'Неверный email').isEmail()],
     async (req, res) => {
         try {
             const errors = validationResult(req);
@@ -48,25 +51,27 @@ router.post('/registr',
                 })
             }
 
-            const { login, password } = req.body;
+            const { fio, login, phone, password, email } = req.body;
 
-            // const candidate = await User.findOne({ login: login })
-            // if (candidate) {
-            //     return res.status(400).json({ message: 'Такой пользователь уже существует' })
-            // }
+            const candidate = await User.findOne({ login: login })
+            if (candidate) {
+                return res.status(400).json({ message: 'Такой пользователь уже существует' })
+            }
 
             const user = new User({
+                fio: fio,
                 login: login,
+                phone: phone,
                 password: password,
-                rank: "client"
+                email: email
             })
 
             await user.save(function (err) {
                 if (err)
-                    return res.status(400).json({message: 'Не удалось зарегистровать нового пользователя (err save)'})
+                    return res.status(400).json({ message: 'Не удалось зарегистровать нового пользователя (err save)' })
             })
 
-            return res.status(200).json({message: 'Регистрация прошла успешно'})
+            return res.status(200).json({ message: 'Регистрация прошла успешно' })
 
         }
         catch (err) {

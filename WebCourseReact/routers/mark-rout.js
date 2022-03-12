@@ -7,7 +7,7 @@ const router = Router();
 //   res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' }); //Line 10
 // });
 
-router.get('/findall', async (req, res) => {
+router.get('/get-marks', async (req, res) => {
     try {
         const marks = await Mark.find({})
 
@@ -22,10 +22,11 @@ router.get('/findall', async (req, res) => {
 
 router.post('/add', async (req, res) => {
     try {
-        const { name } = req.body;
+        const { name, models } = req.body;
 
         let condidat = new Mark({
-            name: name
+            name: name,
+            models: models
         })
 
         await condidat.save(function (err) {
