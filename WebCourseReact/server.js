@@ -9,10 +9,12 @@ app.use(bp.urlencoded({ extended: true }))
 
 app.use('/auth', require('./routers/auth-rout'))
 app.use('/work', require('./routers/work-rout'))
+app.use('/mark', require('./routers/mark-rout'))
+app.use('/order', require('./routers/order-rout'))
 
 async function start() {
   try {
-      await mongoose.connect('mongodb://localhost:27017/WebTest');
+      await mongoose.connect('mongodb://localhost:27017/WebAppSto');
       app.listen(PORT, () => console.log(`Server has been started on port ${PORT}!`));
   }
   catch (e) {

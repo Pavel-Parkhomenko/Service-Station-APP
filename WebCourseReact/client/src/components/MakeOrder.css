@@ -1,81 +1,48 @@
-.order-container {
-    border: 1px solid black;
+.up-container {
     padding: 30px;
     width: 40%;
-    margin-left: 23%;
+    margin-left: 30%;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-    background-color: #dac8c0;
+    background-color: white;
     border-radius: 10px;
 }
 
-.order-underline {
+.up-container .underline {
     border-bottom: solid 2px #474544;
-    margin: 2em auto 3em auto;
-    width: 80px;
+    margin: 2em auto 1em auto;
+    width: 50%;
 }
 
-.row-container {
+.up-container .row-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.order-input_text, .order-textarea {
-    margin-bottom: 30px;
+.up-container .input_text {
+    margin-bottom: 20px;
     line-height: normal;
     background: none;
     border: none;
-    border-bottom: solid 2px #474544;
     color: #474544;
     font-size: 1.000em;
     font-weight: 400;
     width: 45%;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    box-sizing: border-box;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    -ms-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
 }
 
-.order-input_text, .order-textarea:focus {
-    outline: none;
+.up-container .btns{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
 }
 
-.order-form_button {
-    background: none;
-    border: solid 2px #474544;
-    color: #474544;
-    cursor: pointer;
-    display: inline-block;
-    font-family: 'Helvetica', Arial, sans-serif;
-    font-size: 0.875em;
-    font-weight: bold;
-    outline: none;
-    padding: 20px 35px;
-    text-transform: uppercase;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    -ms-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
-}
-
-.order-form_button:hover {
-    background: #474544;
-    color: #F2F3EB;
-}
-
-.order-textarea {
+.up-container .full-width {
     overflow: auto;
     width: 100%;
 }
 
-.makeOrder-container{
+.singUp-container{
     background-image: url('../img/fon-4.jpg');
     height: 100vh;
     display: flex;

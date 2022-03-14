@@ -2,11 +2,11 @@ const {Schema, model} = require('mongoose');
 
 const schema = new Schema({
     feedback: {type: String},
-    fio: {type: String, required: true},
-    login: {type: String, required: true, unique: true},
-    phone: {type: String, required: true},
-    password: {type: String, required: true},
+    fio: {type: String},
+    login: {type: String},
+    phone: {type: String},
+    password: {type: String},
     email: {type: String}
-});
+}, { versionKey: false });
 
 module.exports = model('clients', schema);

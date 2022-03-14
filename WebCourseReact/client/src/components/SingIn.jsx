@@ -4,7 +4,9 @@ import './SingIn.css'
 import useHttp from '../hooks/httpHook'
 import { useDispatch } from 'react-redux'
 import { changeCheckRegistr } from '../store/userSlice'
-import {useSelector} from 'react-redux'
+import { useSelector } from 'react-redux'
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button'
 
 function Authentication() {
 
@@ -45,24 +47,24 @@ function Authentication() {
         checkRegistr ? (
             <Navigate to='/client-room' />
         ) : (
-            <div className='singUp'>
-                <div className='registr-form_container'>
+            <div className='singIn-container'>
+                <div className='in-container'>
+                    <h1 style={{ textAlign: 'center' }}>&bull; Вход &bull;</h1>
+                    <div className="underline"></div>
                     <form action="#" method="post" id="registr-form">
-                        <h2>Регистрация</h2>
                         <div>
-                            <label className="floatLabel">Login</label>
-                            <input name="login" type="text" onChange={handleInput} />
+                            <TextField className='fullWidth' label="Логин" />
                         </div>
                         <div>
-                            <label className="floatLabel">Password</label>
-                            <input name="password" type="password" onChange={handleInput} />
-                            {errMessage ? <span className='errMess-span'>{errMessage}</span> : <span></span>}
+                            <TextField style={{marginTop:30}} className='fullWidth' label="Пароль" />
                         </div>
                     </form>
-                    <div className='btns-container'>
-                        <button onClick={handelSingUp} disabled={loading} className="btn registr">Регистрация</button>
-                        <button onClick={handelSingIn} disabled={loading} className="btn singIn">Вход</button>
-                        <Link style={{ fontSize: 14 }} to="/">Назад</Link>
+                    <div className='btns'>
+                        <Button onClick={handelSingUp} variant="contained" color="secondary">Вход</Button>
+                        <div>
+                            <span style={{ color: 'gray' }}>У вас еще нет аккаунта?</span>
+                            <Button color="primary"><Link to="/auth/registr">Регистрация</Link></Button>
+                        </div>
                     </div>
                 </div>
             </div>
