@@ -1,13 +1,14 @@
 import React from 'react';
-import './CardOrderInfo.css'
+import './OrderPanel.css'
+import Button from '@mui/material/Button'
 
-function CardOrderInfo({ order }) {
+function OrderPanel({ order }) {
 
   let { auto, client, dateRegistr, master, payment, status, problemText, cost } = { ...order }
 
   return (
     <div>
-      <table className='client-table' style={{ marginBottom: 20 }}>
+      <table className='admin-table' style={{ marginBottom: 20 }}>
         <tbody>
           <tr>
             <td colSpan="4">Заказ от {dateRegistr}</td>
@@ -29,18 +30,19 @@ function CardOrderInfo({ order }) {
                 <li>Номер: {auto.gosnumber}</li>
               </ul>
             </td>
-            <td>{
+            <td>
               <ul>
                 <li>{client.fio}</li>
                 <li>{client.phone}</li>
               </ul>
-            }</td>
-            {status.toLowerCase() === "ожидание" ? <td>Не назначен</td> : <td>{
+            </td>
+            {status === "Ожидание" ? <td>Не назначен</td> : <td>
               <ul>
                 <li>{master.fio}</li>
                 <li>{master.email}</li>
               </ul>
-            }</td>}
+            </td> 
+            }
           </tr>
           <tr>
             <td colSpan="4">
@@ -49,15 +51,20 @@ function CardOrderInfo({ order }) {
           </tr>
           <tr>
             <td colSpan="4">
-              {payment !== "0" ? <span>Заказ оплачен</span> :
-                <div><span>Заказ не оплачен (к оплате ){cost} руб.</span><button>Оплатить</button></div>
-              }
+              {cost ? <span>Стоимость заказа: {cost}</span> : <div>
+                <span>Укажите стоимость заказа: </span>
+                <input type="text"></input>
+              </div>}
             </td>
           </tr>
         </tbody>
       </table>
+      {status.toLowerCase() === "ожидание" ? <div ><Button variant="outlined">Принять</Button>
+      <Button variant="text">Отказать</Button></div> : <div>
+        <span>Заказ уже принят </span>
+      </div>}
     </div>
   );
 }
 
-export default CardOrderInfo;
+export default OrderPanel;

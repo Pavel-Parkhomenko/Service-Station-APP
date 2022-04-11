@@ -19,27 +19,17 @@
     justify-content: space-between;
 }
 
-.up-container .input_text {
-    margin-bottom: 20px;
-    line-height: normal;
-    background: none;
-    border: none;
-    color: #474544;
-    font-size: 1.000em;
-    font-weight: 400;
-    width: 45%;
-}
-
 .up-container .btns{
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.up-container .full-width {
-    overflow: auto;
+.up-container .fullWidth {
     width: 100%;
+    margin-top: 10px;
 }
+
 
 .singUp-container{
     background-image: url('../img/fon-4.jpg');

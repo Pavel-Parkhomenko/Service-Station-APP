@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useStore } from 'react-redux';
 import './MakeOrder.css'
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import { Link, Navigate } from 'react-router-dom'
 import useHttp from '../hooks/httpHook'
-import { useDispatch, useSelector } from 'react-redux'
-import { changeCheckRegistr } from '../store/userSlice'
-import TextField from '@material-ui/core/TextField';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 function MakeOrder() {
 
@@ -39,11 +36,9 @@ function MakeOrder() {
         setMarks([...response.data])
     }, [])
 
-    console.log(marks)
-
     return (
-        <div className='singUp-container'>
-            <div className="up-container">
+        <div className='order-container-full'>
+            <div className="order-container">
                 <form action="#" method="post" id="form">
                     <h1 style={{ textAlign: 'center' }}>&bull; Оформление заявки &bull;</h1>
                     <div className="underline"></div>
@@ -68,7 +63,7 @@ function MakeOrder() {
                         <TextField className='input_text' name="typeEngine" onChange={handleInput} label="Тип двигателя" required />
                     </div>
                     <div>
-                        <TextField className='full-width' name="problemText" onChange={handleInput} label="Опишите свою проблему" multiline
+                        <TextField className='fullWidth' name="problemText" onChange={handleInput} label="Опишите свою проблему" multiline
                             rows={2}
                         />
                     </div>
@@ -82,6 +77,7 @@ function MakeOrder() {
                 </form>
             </div>
         </div>
+
     );
 }
 

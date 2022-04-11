@@ -1,8 +1,8 @@
-.client-room-container{
+.admin-room-container{
     background-color: rgb(214, 228, 223);
 }
 
-div.client-info_registr{
+div.admin-info_registr{
     background-color: rgb(124, 212, 121);
     color: white;
     height: 30px;
@@ -11,7 +11,7 @@ div.client-info_registr{
     
 }
 
-div.client-main{
+div.admin-main{
     width: 70%;
     /* background-color: white; */
     min-height: 450px;
@@ -19,12 +19,12 @@ div.client-main{
     margin-top: 10px;
 }
 
-.client-main .paper{
+.admin-main .paper{
     padding:10px;
     margin-bottom: 10px;
 }
 
-div.client-menu{
+div.admin-menu{
     background-color: white;
     border-radius: 0;
     position: sticky;
@@ -32,19 +32,19 @@ div.client-menu{
     z-index: 11;
 }
 
-.client-menu .stack{
+.admin-menu .stack{
     display: flex;
     justify-content: center;
 }
 
-td{
+.admin-table td{
     border: 1px solid black;
 }
-.client-table{
+.admin-table{
     width: 100%;
 }
 
-button.client-bnt_exit{
+button.admin-bnt_exit{
     background-color: red;
     margin-left: 30px;
 }

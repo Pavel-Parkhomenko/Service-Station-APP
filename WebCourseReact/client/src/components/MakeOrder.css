@@ -1,4 +1,4 @@
-.up-container {
+.order-container {
     padding: 30px;
     width: 40%;
     margin-left: 30%;
@@ -7,19 +7,19 @@
     border-radius: 10px;
 }
 
-.up-container .underline {
+.order-container .underline {
     border-bottom: solid 2px #474544;
     margin: 2em auto 1em auto;
     width: 50%;
 }
 
-.up-container .row-container {
+.order-container .row-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.up-container .input_text {
+.order-container .input_text {
     margin-bottom: 20px;
     line-height: normal;
     background: none;
@@ -30,19 +30,18 @@
     width: 45%;
 }
 
-.up-container .btns{
+.order-container .btns{
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-top: 30px;
 }
 
-.up-container .full-width {
-    overflow: auto;
+.order-container .fullWidth {
     width: 100%;
 }
 
-.singUp-container{
+.order-container-full{
     background-image: url('../img/fon-4.jpg');
     height: 100vh;
     display: flex;

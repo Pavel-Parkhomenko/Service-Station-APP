@@ -5,13 +5,14 @@ import useHttp from '../hooks/httpHook'
 import { useDispatch } from 'react-redux'
 import { changeCheckRegistr } from '../store/userSlice'
 import { useSelector } from 'react-redux'
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button'
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button'
 
 function Authentication() {
 
     const { loading, request } = useHttp();
     const [errMessage, setErrMessage] = useState('')
+
     let checkRegistr = useSelector(store => store.user.checkRegistr)
 
     const dispatch = useDispatch();
@@ -21,19 +22,10 @@ function Authentication() {
         password: ''
     })
 
-    async function handelSingUp() {
-        const response = await request('/auth/registr', 'POST', { ...form })
-        if (!response.hasOwnProperty('err'))
-            dispatch(changeCheckRegistr())
-
-        console.log(response);
-    }
-
     async function handelSingIn() {
         const response = await request('/auth/login', 'POST', { ...form })
         if (!response.hasOwnProperty('err')) {
-            dispatch(changeCheckRegistr())
-            // document.location.href = "/client-room";
+            dispatch(changeCheckRegistr({login: form.login}))
         }
 
         setErrMessage(response.message)
@@ -53,14 +45,14 @@ function Authentication() {
                     <div className="underline"></div>
                     <form action="#" method="post" id="registr-form">
                         <div>
-                            <TextField className='fullWidth' label="Логин" />
+                            <TextField onChange={handleInput} name='login' className='fullWidth' label="Логин" />
                         </div>
                         <div>
-                            <TextField style={{marginTop:30}} className='fullWidth' label="Пароль" />
+                            <TextField onChange={handleInput} name='password' style={{marginTop:30}} className='fullWidth' label="Пароль" />
                         </div>
                     </form>
                     <div className='btns'>
-                        <Button onClick={handelSingUp} variant="contained" color="secondary">Вход</Button>
+                        <Button onClick={handelSingIn} variant="contained" color="secondary">Вход</Button>
                         <div>
                             <span style={{ color: 'gray' }}>У вас еще нет аккаунта?</span>
                             <Button color="primary"><Link to="/auth/registr">Регистрация</Link></Button>

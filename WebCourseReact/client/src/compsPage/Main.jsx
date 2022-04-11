@@ -9,17 +9,20 @@ import Feedback from '../components/Feedback';
 
 export default function Main(params) {
 
-	const { loading, request } = useHttp()
+	const { request } = useHttp()
 	const [works, setWorks] = useState([])
+	const [feedbacks, setFeedbacks] = useState([]);
 
 	useEffect(async () => {
-		const response = await request('work/get-works', 'GET');
-		setWorks([...works, ...response.works])
+		const resWorks = await request('work/get-works', 'GET');
+		setWorks([...works, ...resWorks.works])
+		const resFeedback = await request('client/get-feedbacks', "GET");
+        setFeedbacks([...feedbacks, ...resFeedback.data])
 	}, [])
 
 	return (
 		<>
-			<Header />
+			<Header menu="menu"/>
 			<main className="main">
 				<h1 style={{ fontSize: 45 }}>СТО Гомель</h1>
 				<div className='container-img-text'>
@@ -64,10 +67,7 @@ export default function Main(params) {
 				</div>
 				<div>
 					<h2>Отзывы наших клиентов</h2>
-					<Feedback/>
-					<Feedback/>
-					<Feedback/>
-					<Feedback displayStyle="block"/>
+					{feedbacks.map((x, ind) => <Feedback key={ind} fio={x.fio} feedback={x.feedback}/>)}
 				</div>
 				<div id="main-price_table">
 					<h2>

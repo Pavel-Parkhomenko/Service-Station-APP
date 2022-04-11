@@ -4,6 +4,7 @@
     display: inline-block;
     margin-right: 3em;
     margin-bottom: 10px;
+    padding: 5px;
 }
 
 .feedback-photo img{
@@ -11,15 +12,8 @@
     width: 50px;
 }
 
-/* .feedback-text_container{
-    background-color: brown;
-}
-.feedback-text{
-    background-color: blue;
-}*/
-
 .feedback-name{
-    color: green;
+    color: rgb(90, 231, 62);
     margin-bottom: 10px;
     font-weight: bold;
 } 

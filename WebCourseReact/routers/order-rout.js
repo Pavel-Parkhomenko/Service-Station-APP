@@ -63,4 +63,20 @@ router.get('/get-orders', async (req, res) => {
     }
 });
 
+
+router.post('/get-orders-login', async (req, res) => {
+    try {
+        const {login} = req.body;
+        const orders = await Order.find({'client.login': login})
+
+        if (orders.length == 0)
+            return res.status(400).json({ message: 'Заказов пока что нет' })
+
+        res.status(200).json({ data: orders });
+    } catch (err) {
+        res.status(500).json('Что то пошло нет так: ' + err);
+    }
+});
+
+
 module.exports = router;

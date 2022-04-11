@@ -1,7 +1,7 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import './Feedback.css'
 
-function Feedback({ displayStyle }) {
+function Feedback({ displayStyle, fio, feedback }) {
     if(displayStyle == undefined)
         displayStyle = 'inline';
 
@@ -13,10 +13,10 @@ function Feedback({ displayStyle }) {
                 </div>
                 <div className='feedback-text_container'>
                     <div className='feedback-name'>
-                        Пархоменко Павел
+                        {fio}
                     </div>
                     <div className='feedback-text'>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam sequi iusto deleniti ipsam voluptatibus autem, voluptate rerum aperiam? Amet, explicabo.
+                       {feedback}
                     </div>
                 </div>
             </div>

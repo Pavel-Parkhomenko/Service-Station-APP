@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import './SingUp.css'
 import { Link, Navigate } from 'react-router-dom'
 import useHttp from '../hooks/httpHook'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeCheckRegistr } from '../store/userSlice'
-import TextField from '@material-ui/core/TextField';
+import TextField from '@mui/material/TextField';
 
 
 function SingUp() {
+
 	let checkRegistr = useSelector(store => store.user.checkRegistr)
 
 	const [form, setForm] = useState({
@@ -25,7 +26,7 @@ function SingUp() {
 	async function handelSingUp() {
 		const response = await request('/auth/registr', 'POST', { ...form })
 		if (!response.hasOwnProperty('err'))
-			dispatch(changeCheckRegistr())
+			dispatch(changeCheckRegistr({login: form.login}))
 	}
 
 	function handleInput(event) {
@@ -42,20 +43,22 @@ function SingUp() {
 						<h1 style={{ textAlign: 'center' }}>&bull; РЕГИСТРАЦИЯ &bull;</h1>
 						<div className="underline"></div>
 
-						<div className='row-container'>
-							<TextField name="fio" onChange={handleInput} className='input_text' label="ФИО" required />
-							<TextField name="phone" onChange={handleInput} className='input_text' label="Телефон" required />
+						<div className='input-container'>
+							<div className='row-container'>
+								<TextField name="fio" onChange={handleInput} label="ФИО" required />
+								<TextField name="phone" onChange={handleInput} label="Телефон" required />
+							</div>
+							<div>
+								<TextField name='email' onChange={handleInput} className='fullWidth' label="Email" />
+							</div>
+							<div>
+								<TextField name="login" className='fullWidth' onChange={handleInput} label="Логин" />
+							</div>
+							<div>
+								<TextField name="password" onChange={handleInput} className='fullWidth' label="Пароль" />
+							</div>
 						</div>
 
-						<div>
-							<TextField name="email" onChange={handleInput} className='full-width input_text' label="Email" />
-						</div>
-						<div>
-							<TextField name="login" className='full-width input_text' onChange={handleInput} label="Логин" required />
-						</div>
-						<div>
-							<TextField name="password" onChange={handleInput} className='full-width input_text' label="Пароль" required />
-						</div>
 
 						<div className='btns'>
 							<Button onClick={handelSingUp} variant="contained" color="secondary">Регистрация</Button>
