@@ -24,7 +24,7 @@ router.get('/get-clients', async (req, res) => {
     try {
         const clients = await Client.find();
 
-        if (clients.length == 0) {
+        if (clients.length === 0) {
             return res.status(400).json({ message: 'Пользователей в бд нет' })
         }
 

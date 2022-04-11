@@ -6,7 +6,7 @@ export default function Footer(params) {
     return (
         <footer className="footer">
             <div className='footer-1'>
-                <img className='img-left' src={require("../img/img-footer-1.PNG")} />
+                <img className='img-left' src={require("../img/img-footer-1.PNG")}  alt='logo'/>
                 <h2>Подпишитесь на нас в соцсетях и мессенджерах</h2>
                 <h3>И получайте информацию о наших новостях, скидках и предложениях</h3>
                 <div className='messengeres'>

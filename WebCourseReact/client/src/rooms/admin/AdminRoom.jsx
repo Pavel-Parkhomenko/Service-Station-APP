@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import Footer from '../../compsPage/Footer';
 import Header from '../../compsPage/Header';
 import Stack from '@mui/material/Stack';
@@ -11,7 +11,7 @@ import './AdminRoom.css';
 
 function AdminRoom() {
 
-  const { request } = useHttp();
+  const {request} = useHttp();
 
   const [orders, setOrders] = useState([])
   const [status, setStatus] = useState('');
@@ -23,36 +23,36 @@ function AdminRoom() {
   }, [])
 
   return (
-    <div>
-      <Header menu="admin" />
-      <div className='admin-menu_main'>
-        <Paper className='admin-menu' elevation={20}>
-          <Stack className="stack" direction="row" spacing={3}>
-            <Button color="secondary">Главная</Button>
-            <Button color="secondary">Заказы</Button>
-            <Button color="secondary">Отзывы</Button>
-            <Button color="secondary">Услуги</Button>
-            <Button color="secondary">Пользователи</Button>
-          </Stack>
-        </Paper>
-        <div className='admin-info_registr'>
-          &#9813;Вход выполнен успешно
-        </div>
-
-        <div className="admin-main">
-          <Paper elevation={20} className="paper">
-            {orders.map((ord, ind) => {
-              return (
-                <OrderPanel order={ord} />
-              )
-            })}
+      <div>
+        <Header menu="admin"/>
+        <div className='admin-menu_main'>
+          <Paper className='admin-menu' elevation={20}>
+            <Stack className="stack" direction="row" spacing={3}>
+              <Button color="secondary">Главная</Button>
+              <Button color="secondary">Заказы</Button>
+              <Button color="secondary">Отзывы</Button>
+              <Button color="secondary">Услуги</Button>
+              <Button color="secondary">Пользователи</Button>
+            </Stack>
           </Paper>
+          <div className='admin-info_registr'>
+            &#9813;Вход выполнен успешно
+          </div>
+
+          <div className="admin-main">
+            <Paper elevation={20} className="paper">
+              {orders.map((ord, ind) => {
+                return (
+                    <OrderPanel order={ord}/>
+                )
+              })}
+            </Paper>
+          </div>
+
+
         </div>
-
-
+        <Footer/>
       </div>
-      <Footer />
-    </div>
   );
 }
 
