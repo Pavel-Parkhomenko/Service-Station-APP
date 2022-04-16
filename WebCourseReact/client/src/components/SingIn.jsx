@@ -13,7 +13,7 @@ function Authentication() {
 
   const {loading, request} = useHttp();
   const [errMessage, setErrMessage] = useState('');
-  const [isAdmin, serIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   let checkRegistr = useSelector(store => store.user.checkRegistr)
 
@@ -25,7 +25,12 @@ function Authentication() {
   })
 
   async function handelSingIn() {
-    const response = await request('/auth/login', 'POST', {...form})
+    let response;
+    if (!isAdmin)
+      response = await request('/auth/login', 'POST', {...form})
+    else
+      response = await request('/employee/login-empl', 'POST', {...form})
+
     if (!response.hasOwnProperty('err')) {
       dispatch(changeCheckRegistr({login: form.login}))
     }
@@ -37,37 +42,42 @@ function Authentication() {
     setForm({...form, [event.target.name]: event.target.value})
   }
 
-  return (
-      checkRegistr ? (
-          <Navigate to='/client-room'/>
-      ) : (
-          <div className='singIn-container'>
-            <div className='in-container'>
-              <h1 style={{textAlign: 'center'}}>&bull; Вход &bull;</h1>
-              <div className="underline"/>
-              <form action="#" method="post" id="registr-form">
-                <div>
-                  <TextField onChange={handleInput} name='login' className='fullWidth' label="Логин"/>
-                </div>
-                <div>
-                  <TextField onChange={handleInput} name='password' style={{marginTop: 30}} className='fullWidth'
-                             label="Пароль"/>
-                </div>
-              </form>
-              <div className='btns'>
-                <Button onClick={handelSingIn} variant="contained" color="secondary">Вход</Button>
-                <div>
-                  <span style={{color: 'gray'}}>У вас еще нет аккаунта?</span>
-                  <Button color="primary"><Link to="/auth/registr">Регистрация</Link></Button>
-                </div>
-                <div>
-                  <Checkbox checked={isAdmin} label="Start" labelPlacement="start"/>
-                </div>
-              </div>
+  function isAdminHandle(event) {
+    setIsAdmin(!isAdmin);
+  }
+
+  if (!checkRegistr) {
+    return (<div className='singIn-container'>
+      <div className='in-container'>
+        <h1 style={{textAlign: 'center'}}>&bull; Вход &bull;</h1>
+        <div className="underline"/>
+        <form action="#" method="post" id="registr-form">
+          <div>
+            <TextField onChange={handleInput} name='login' className='fullWidth' label="Логин"/>
+          </div>
+          <div>
+            <TextField onChange={handleInput} name='password' style={{marginTop: 30}} className='fullWidth'
+                       label="Пароль"/>
+          </div>
+
+        </form>
+        <div className='btns'>
+          <Button onClick={handelSingIn} variant="contained" color="secondary">Вход</Button>
+          <div>
+            <span style={{color: 'gray'}}>У вас еще нет аккаунта?</span>
+            <Button color="primary"><Link to="/auth/registr">Регистрация</Link></Button>
+            <div>
+              <span style={{color: 'gray'}}>Я являюсь сотрутдником</span>
+              <Checkbox checked={isAdmin} onChange={isAdminHandle} label="Start" labelPlacement="start"/>
             </div>
           </div>
-      )
-  )
+
+        </div>
+      </div>
+    </div>)
+  } else if (!isAdmin)
+    return <Navigate to='/client-room'/>
+  else return <Navigate to='/admin-room'/>
 }
 
 export default Authentication;

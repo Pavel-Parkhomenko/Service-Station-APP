@@ -2,7 +2,7 @@ const {Schema, model} = require('mongoose')
 const mongoose = require("mongoose");
 
 const schema = new Schema({
-    _id: {type: mongoose.Schema.Types.ObjectId},
+    _id: {type: mongoose.Schema.Types.ObjectId, required: false},
     auto: {
         yearRelese: {type: String, required: true},
         mark: {type: String, required: true},

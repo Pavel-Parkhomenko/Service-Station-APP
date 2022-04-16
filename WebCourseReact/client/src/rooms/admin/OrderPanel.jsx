@@ -1,6 +1,7 @@
 import React from 'react';
 import './OrderPanel.css'
 import Button from '@mui/material/Button'
+import ChangeMaster from "./ChangeMaster";
 
 function OrderPanel({ order }) {
 
@@ -36,7 +37,7 @@ function OrderPanel({ order }) {
                 <li>{client.phone}</li>
               </ul>
             </td>
-            {status === "Ожидание" ? <td>Не назначен</td> : <td>
+            {status === "Ожидание" ? <td><ChangeMaster/></td> : <td>
               <ul>
                 <li>{master.fio}</li>
                 <li>{master.email}</li>
@@ -53,7 +54,7 @@ function OrderPanel({ order }) {
             <td colSpan="4">
               {cost ? <span>Стоимость заказа: {cost}</span> : <div>
                 <span>Укажите стоимость заказа: </span>
-                <input type="text"></input>
+                <input type="text"/>
               </div>}
             </td>
           </tr>

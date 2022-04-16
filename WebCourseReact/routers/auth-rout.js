@@ -19,12 +19,14 @@ router.post('/login',
 
             const { login, password } = req.body;
 
+            console.log('auth: ' + login + ' ' +  password)
+
             const user = await User.findOne({ login: login });
             if (!user) {
                 return res.status(400).json({ message: 'Такого логина не существует' })
             }
 
-            if (password != user.password)
+            if (password !== user.password)
                 return res.status(400).json({ message: 'Пользователя с таким паролем не существует' })
 
             return res.status(200).json({ login: login, password: password, message: 'Вход выполнен успешно' })

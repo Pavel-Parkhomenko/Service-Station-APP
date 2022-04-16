@@ -1,20 +1,15 @@
-.client-table table {
-    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-    text-align: left;
-    border-collapse: separate;
-    border-spacing: 5px;
-    background: #ECE9E0;
-    color: #656665;
-    border: 16px solid #ECE9E0;
-    border-radius: 20px;
-}
-
-.client-table th {
+.client-cardOrderInfo th {
     font-size: 18px;
     padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(124, 212, 121);
 }
 
-.client-table td {
-    background: #F5D7BF;
+.client-cardOrderInfo td {
+    background: #e1dede;
     padding: 10px;
+}
+
+.client-cardOrderInfo table{
+    width: 100%;
 }

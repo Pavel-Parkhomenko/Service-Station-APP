@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import useHttp from '../../hooks/httpHook'
-import OrderPanel from './OrderPanel'
+// import OrderPanel from './OrderPanel'
 import './AdminRoom.css';
 
 function AdminRoom() {
@@ -39,15 +39,15 @@ function AdminRoom() {
             &#9813;Вход выполнен успешно
           </div>
 
-          <div className="admin-main">
-            <Paper elevation={20} className="paper">
-              {orders.map((ord, ind) => {
-                return (
-                    <OrderPanel order={ord}/>
-                )
-              })}
-            </Paper>
-          </div>
+          {/*<div className="admin-main">*/}
+          {/*  <Paper elevation={20} className="paper">*/}
+          {/*    {orders.map((ord, ind) => {*/}
+          {/*      return (*/}
+          {/*          <OrderPanel key={ind} order={ord}/>*/}
+          {/*      )*/}
+          {/*    })}*/}
+          {/*  </Paper>*/}
+          {/*</div>*/}
 
 
         </div>

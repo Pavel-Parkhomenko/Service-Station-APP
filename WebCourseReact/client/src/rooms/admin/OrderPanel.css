@@ -1,9 +1,9 @@
 .admin-table table {
-    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif, serif;
     text-align: left;
     border-collapse: separate;
     border-spacing: 5px;
-    background: #ECE9E0;
+    background-color: #5a9607;
     color: #656665;
     border: 16px solid #ECE9E0;
     border-radius: 20px;

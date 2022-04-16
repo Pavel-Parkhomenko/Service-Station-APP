@@ -2,6 +2,7 @@ const {Router} = require('express');
 const {check, validationResult} = require('express-validator');
 const Order = require('../models/Order');
 const Client = require('../models/Client');
+const mongoose = require("mongoose");
 
 const router = Router();
 
@@ -20,6 +21,7 @@ router.post('/create', async (req, res) => {
         })
 
         const order = new Order({
+            _id: new mongoose.Types.ObjectId(),
             auto: auto,
             client: client,
             dateRegistr: new Date().toLocaleString(),

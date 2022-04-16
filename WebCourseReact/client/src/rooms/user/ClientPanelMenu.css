@@ -1,0 +1,16 @@
+.client-ClientPanelMenu .paper{
+    padding:10px;
+    margin-bottom: 10px;
+}
+
+.client-ClientPanelMenu {
+    border-radius: 0;
+    position: sticky;
+    top:70px;
+    z-index: 11;
+}
+
+.client-ClientPanelMenu .stack{
+    display: flex;
+    justify-content: center;
+}

@@ -12,6 +12,7 @@ app.use('/work', require('./routers/work-rout'))
 app.use('/mark', require('./routers/mark-rout'))
 app.use('/order', require('./routers/order-rout'))
 app.use('/client', require('./routers/client-rout'))
+app.use('/employee', require('./routers/employee-rout'))
 
 async function start() {
   try {

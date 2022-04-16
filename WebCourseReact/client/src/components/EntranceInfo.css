@@ -1,0 +1,7 @@
+div.info-registr{
+    background-color: rgb(124, 212, 121);
+    color: white;
+    height: 30px;
+    display: flex;
+    align-items: center;
+}

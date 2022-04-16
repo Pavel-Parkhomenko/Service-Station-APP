@@ -73,7 +73,7 @@ export default function Main(params) {
 					<h2>
 						Прейскурант отпускных цен на услуги Service Station в г. Гомель
 					</h2>
-					<table>
+					<table className={"mainTable"}>
 						<tbody>
 						<tr>
 							<th>Наименование</th>
