@@ -1,50 +1,6 @@
-.admin-room-container{
-    background-color: rgb(214, 228, 223);
-}
-
-div.admin-info_registr{
-    background-color: rgb(124, 212, 121);
-    color: white;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    
-}
-
 div.admin-main{
     width: 70%;
-    /* background-color: white; */
     min-height: 450px;
     margin-left: 15%;
     margin-top: 10px;
-}
-
-.admin-main .paper{
-    padding:10px;
-    margin-bottom: 10px;
-}
-
-div.admin-menu{
-    background-color: white;
-    border-radius: 0;
-    position: sticky;
-    top:70px;
-    z-index: 11;
-}
-
-.admin-menu .stack{
-    display: flex;
-    justify-content: center;
-}
-
-.admin-table td{
-    border: 1px solid black;
-}
-.admin-table{
-    width: 100%;
-}
-
-button.admin-bnt_exit{
-    background-color: red;
-    margin-left: 30px;
 }

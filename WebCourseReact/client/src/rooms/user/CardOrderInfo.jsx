@@ -6,8 +6,8 @@ function CardOrderInfo({ order }) {
   let { auto, client, dateRegistr, master, payment, status, problemText, cost } = { ...order }
 
   return (
-    <div className={"client-cardOrderInfo"}>
-      <table>
+    <div>
+      <table className={"client-cardOrderInfo"}>
         <tbody>
           <tr>
             <td colSpan="4" style={{backgroundColor:"gray"}}>Заказ от {dateRegistr}</td>

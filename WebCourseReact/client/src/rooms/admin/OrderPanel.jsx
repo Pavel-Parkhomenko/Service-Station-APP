@@ -9,7 +9,7 @@ function OrderPanel({ order }) {
 
   return (
     <div>
-      <table className='admin-table' style={{ marginBottom: 20 }}>
+      <table className={"admin-orderPanel"} style={{ marginBottom: 20 }}>
         <tbody>
           <tr>
             <td colSpan="4">Заказ от {dateRegistr}</td>
@@ -58,12 +58,13 @@ function OrderPanel({ order }) {
               </div>}
             </td>
           </tr>
+          {status.toLowerCase() === "ожидание" ? <div ><Button variant="outlined">Принять</Button>
+            <Button variant="text">Отказать</Button></div> : <div>
+            <span>Заказ уже принят </span>
+          </div>}
         </tbody>
       </table>
-      {status.toLowerCase() === "ожидание" ? <div ><Button variant="outlined">Принять</Button>
-      <Button variant="text">Отказать</Button></div> : <div>
-        <span>Заказ уже принят </span>
-      </div>}
+      <hr/>
     </div>
   );
 }

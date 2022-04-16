@@ -1,0 +1,16 @@
+.admin-AdminMenuPanel .paper{
+    padding:10px;
+    margin-bottom: 10px;
+}
+
+.admin-AdminMenuPanel {
+    border-radius: 0;
+    position: sticky;
+    top:70px;
+    z-index: 11;
+}
+
+.admin-AdminMenuPanel .stack{
+    display: flex;
+    justify-content: center;
+}

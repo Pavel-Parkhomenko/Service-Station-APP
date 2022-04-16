@@ -5,3 +5,7 @@
 .priceTable th{
     border: 1px solid black;
 }
+
+.editPanel{
+    display: none;
+}
