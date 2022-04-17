@@ -3,7 +3,7 @@ import Footer from '../../compsPage/Footer';
 import Header from '../../compsPage/Header';
 import './ClientRoom.css'
 import FeedbackPanel from './FeedbackPanel'
-import PriceTable from "../../components/PriseTable";
+import ClientPriceTable from "./ClientPriseTable";
 import ClientOrderPanel from "./ClientOrderPanel";
 import EntranceInfo from "../../components/EntranceInfo";
 import ClientPanelMenu from "./ClientPanelMenu";
@@ -19,7 +19,7 @@ function ClientRoom() {
         <div className='client-main'>
           <ClientOrderPanel/>
           <FeedbackPanel/>
-          <PriceTable/>
+          <ClientPriceTable/>
         </div>
       </div>
       <Footer />

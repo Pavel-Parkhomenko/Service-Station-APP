@@ -1,0 +1,11 @@
+.admin-workTable td{
+    border: 1px solid black;
+}
+
+.admin-workTable th{
+    border: 1px solid black;
+}
+
+.admin-editPanel, .admin-deletePanel{
+    display: none;
+}

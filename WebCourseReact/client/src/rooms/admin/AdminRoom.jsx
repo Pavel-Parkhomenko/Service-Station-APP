@@ -30,7 +30,7 @@ function AdminRoom() {
           <EntranceInfo/>
 
           <div className="admin-main">
-            <Paper elevation={20} className="paper">
+            <Paper elevation={10}>
               {orders.map((ord, ind) => {
                 return (
                     <OrderPanel key={ind} order={ord}/>

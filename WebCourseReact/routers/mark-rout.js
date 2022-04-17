@@ -3,15 +3,11 @@ const Mark = require('../models/Mark');
 
 const router = Router();
 
-// app.get('/login', (req, res) => {
-//   res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' }); //Line 10
-// });
-
 router.get('/get-marks', async (req, res) => {
     try {
         const marks = await Mark.find({})
 
-        if (marks.length == 0)
+        if (marks.length === 0)
             return res.status(400).json({ message: 'Данные отсуствуют' })
 
         res.status(200).json({ data: marks });
