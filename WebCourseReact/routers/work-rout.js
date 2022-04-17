@@ -1,6 +1,5 @@
 const {Router} = require('express')
 const Work = require('../models/Work')
-const {check, validationResult} = require('express-validator')
 
 const router = Router()
 
@@ -12,7 +11,7 @@ const router = Router()
 
 router.get('/get-works', async(req, res) => {
     const works = await Work.find({});
-    if(works.length == 0)
+    if(works.length === 0)
         return res.status(400).json({message: 'Данные в базе данных отсуствуют'})
     return res.status(200).json({works: works})
 })
