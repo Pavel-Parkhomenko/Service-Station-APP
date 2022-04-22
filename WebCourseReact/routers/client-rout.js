@@ -43,7 +43,7 @@ router.get('/get-feedbacks', async (req, res) => {
         }
 
         const feedbacks = clients.filter(c => {
-            if(c.feedback !== undefined) return { id: c._id, fio: c.fio, feedback: c.feedback }
+            if(c.feedback) return { id: c._id, fio: c.fio, feedback: c.feedback }
         })
 
         res.status(200).json({ data: feedbacks });
@@ -73,5 +73,32 @@ router.put('/update-feedback', async (req, res) => {
         res.status(500).json('Что то пошло нет так: ' + err);
     }
 });
+
+router.put('/delete-feedback', [
+    check("id", "Неверный индентификатор").isLength({min: 1, max: 50})
+], async (req, res) => {
+    try {
+        let errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({
+                errors: errors.array(),
+                message: "Индентификатор имел не верный формат"
+            })
+        }
+        let {id} = req.body;
+        const client = await Client.findOne({ _id: id })
+        client.feedback = null;
+        await client.save(function (err) {
+            if (err) {
+                return res.status(400).json({ message: 'Не удалось удалить (err save)' })
+            }
+            else
+                return res.status(200).json({ message: 'Отзыв успешно удален' })
+        })
+        return res.status(200).json({message: "Отзыв успешно удален"})
+    } catch (err) {
+        return res.status(400).json({message: "Отзыв не была удален"})
+    }
+})
 
 module.exports = router;

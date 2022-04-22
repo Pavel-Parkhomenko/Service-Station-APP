@@ -29,6 +29,12 @@ function AdminRoom() {
     setOrders([...response.data])
   }, [])
 
+  async function deleteFeedbackHandle(event, id) {
+    console.log(id + " deleted")
+    const response = await request('client/delete-feedback', 'PUT', {id: id})
+    console.log(response);
+  }
+
   return (
       <div>
         <Header menu="admin"/>
@@ -47,7 +53,15 @@ function AdminRoom() {
             <Paper elevation={10}>
               <div>
                 <h2>Отзывы наших клиентов</h2>
-                {feedbacks.map((x, ind) => <Feedback key={ind} fio={x.fio} feedback={x.feedback}/>)}
+                {feedbacks.map((x, ind) => <Feedback
+                  key={x._id}
+                  id={x._id}
+                  deleteFeedbackHandle={deleteFeedbackHandle}
+                  fio={x.fio}
+                  feedback={x.feedback}
+                  isAdmin={true}
+                  />
+                )}
               </div>
             </Paper>
           </div>
