@@ -8,6 +8,7 @@ import './AdminRoom.css';
 import AdminMenuPanel from "./AdminMenuPanel";
 import EntranceInfo from "../../components/EntranceInfo";
 import WorksPanel from "./WorksPanel";
+import Feedback from "../../components/Feedback";
 
 function AdminRoom() {
 
@@ -16,6 +17,12 @@ function AdminRoom() {
   const [orders, setOrders] = useState([])
   const [status, setStatus] = useState('');
   const [cost, setCost] = useState('');
+  const [feedbacks, setFeedbacks] = useState([]);
+
+  useEffect(async () => {
+    const resFeedback = await request('client/get-feedbacks', "GET");
+    setFeedbacks([...resFeedback.data])
+  }, [])
 
   useEffect(async () => {
     const response = await request('order/get-orders', "GET");
@@ -37,6 +44,12 @@ function AdminRoom() {
                 )})}
             </Paper>
             <WorksPanel/>
+            <Paper elevation={10}>
+              <div>
+                <h2>Отзывы наших клиентов</h2>
+                {feedbacks.map((x, ind) => <Feedback key={ind} fio={x.fio} feedback={x.feedback}/>)}
+              </div>
+            </Paper>
           </div>
         </div>
         <Footer/>

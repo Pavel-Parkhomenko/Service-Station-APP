@@ -16,7 +16,7 @@ export default function ChangeMaster(){
 
   return(
     <>
-      <FormControl fullWidth>
+      <FormControl  sx={{ minWidth: 200, maxWidth: 200 }}>
         <InputLabel>Мастер</InputLabel>
         <Select
           label="Master"

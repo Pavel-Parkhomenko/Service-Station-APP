@@ -20,7 +20,7 @@ const schema = new Schema({
         login: {type: String},
         email: {type: String},
     },
-    payment: {type: String, required: true},
+    payment: {type: String},
     status: {type: String, required: true},
     problemText: {type: String, required: true},
     cost: {type: String},

@@ -41,7 +41,7 @@ function SingUp() {
 				<div className="up-container">
 					<form action="#" method="post" id="form">
 						<h1 style={{ textAlign: 'center' }}>&bull; РЕГИСТРАЦИЯ &bull;</h1>
-						<div className="underline"></div>
+						<div className="underline"/>
 
 						<div className='input-container'>
 							<div className='row-container'>
@@ -55,7 +55,7 @@ function SingUp() {
 								<TextField name="login" className='fullWidth' onChange={handleInput} label="Логин" />
 							</div>
 							<div>
-								<TextField name="password" onChange={handleInput} className='fullWidth' label="Пароль" />
+								<TextField name="password" type="password" onChange={handleInput} className='fullWidth' label="Пароль" />
 							</div>
 						</div>
 

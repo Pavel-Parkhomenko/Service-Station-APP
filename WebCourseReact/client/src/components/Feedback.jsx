@@ -2,14 +2,14 @@ import React from 'react'
 import './Feedback.css'
 
 function Feedback({ displayStyle, fio, feedback }) {
-    if(displayStyle == undefined)
+    if(displayStyle === undefined)
         displayStyle = 'inline';
 
     return (
         <div style={{display: displayStyle}}>
             <div className='feedback-container'>
                 <div className='feedback-photo'>
-                    <img src={require("../img/avatar-1.png")} />
+                    <img src={require("../img/avatar-1.png")}  alt={'profile'}/>
                 </div>
                 <div className='feedback-text_container'>
                     <div className='feedback-name'>

@@ -56,7 +56,7 @@ function Authentication() {
             <TextField onChange={handleInput} name='login' className='fullWidth' label="Логин"/>
           </div>
           <div>
-            <TextField onChange={handleInput} name='password' style={{marginTop: 30}} className='fullWidth'
+            <TextField onChange={handleInput} type="password" name='password' style={{marginTop: 30}} className='fullWidth'
                        label="Пароль"/>
           </div>
 

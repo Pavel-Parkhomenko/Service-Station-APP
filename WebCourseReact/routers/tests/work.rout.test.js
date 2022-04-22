@@ -20,7 +20,7 @@ describe('Добавить новую услугу', () => {
 })
 
 let update = {
-  _id: "625c5a2a0573449b2ffc4f22",
+  _id: "625c5a030573449b2ffc4f21",
   name: "test update api"
 }
 

@@ -29,8 +29,8 @@ router.post("/add-work", [
     let condidat = new Work({name: name, description: description, cost: parseFloat(cost)})
 
     await condidat.save(function (err) {
-      if (err) return res.status(400).json({message: "Не удалось сохранить данные"})
-      // if (err) return res.status(400)
+      // if (err) return res.status(400).json({message: "Не удалось сохранить данные"})
+      if (err) return res.status(400)
     })
 
     return res.status(200).json({message: 'Данные добавлены'})

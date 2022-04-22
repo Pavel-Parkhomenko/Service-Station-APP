@@ -42,8 +42,8 @@ router.get('/get-feedbacks', async (req, res) => {
             return res.status(400).json({ message: 'Пользователей в бд нет' })
         }
 
-        const feedbacks = clients.map(c => {
-            return { fio: c.fio, feedback: c.feedback }
+        const feedbacks = clients.filter(c => {
+            if(c.feedback !== undefined) return { id: c._id, fio: c.fio, feedback: c.feedback }
         })
 
         res.status(200).json({ data: feedbacks });

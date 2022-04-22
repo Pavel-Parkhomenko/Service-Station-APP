@@ -95,5 +95,29 @@ router.put("/update-master-cost", async (req, res) => {
     }
 })
 
+router.put("/update-payment", async (req, res) => {
+    try {
+        const {id} = req.body;
+        console.log(req.body)
+        const order = Order.findOne({_id: id});
+
+        if(!order){
+            return res.status(400).json({message: "Заказа с id" + id + " не найден"});
+        }
+
+        order.payment = '1'
+
+        await order.save(function (err){
+            if(err)
+                return res.status(400).json({message: "Не удалось обновить данные заказа"})
+            else
+                return res.status(200).json({message: "Заказ успешно обновлен"});
+        })
+
+    } catch (err) {
+        res.status(500).json({message: "Что-то пошло не так: " + err})
+    }
+})
+
 
 module.exports = router;

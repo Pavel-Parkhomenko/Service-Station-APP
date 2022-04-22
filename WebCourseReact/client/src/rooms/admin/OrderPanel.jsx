@@ -2,6 +2,7 @@ import React from 'react';
 import './OrderPanel.css'
 import Button from '@mui/material/Button'
 import ChangeMaster from "./ChangeMaster";
+import {TextField} from "@mui/material";
 
 function OrderPanel({ order }) {
 
@@ -47,23 +48,29 @@ function OrderPanel({ order }) {
           </tr>
           <tr>
             <td colSpan="4">
-              {problemText}
+              Описание проблемы: {problemText}
             </td>
           </tr>
           <tr>
             <td colSpan="4">
               {cost ? <span>Стоимость заказа: {cost}</span> : <div>
-                <span>Укажите стоимость заказа: </span>
-                <input type="text"/>
+                <TextField
+                  label='Укажите стоимость заказа'
+                  id="outlined-size-small"
+                  defaultValue="100"
+                  size="small"
+                />
               </div>}
             </td>
           </tr>
-          {status.toLowerCase() === "ожидание" ? <div ><Button variant="outlined">Принять</Button>
-            <Button variant="text">Отказать</Button></div> : <div>
-            <span>Заказ уже принят </span>
-          </div>}
         </tbody>
       </table>
+      {status.toLowerCase() === "ожидание" ? <div className={'action-order-panel'}>
+          <Button variant="outlined">Принять</Button>
+          <Button variant="text">Отказать</Button></div> :
+        <div className={'action-order-panel'}>
+          <span>Заказ уже принят </span>
+        </div>}
       <hr/>
     </div>
   );
