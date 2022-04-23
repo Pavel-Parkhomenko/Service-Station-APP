@@ -4,6 +4,7 @@ import Menu from './Menu';
 import { Link } from 'react-router-dom'
 import ClientMenu from '../rooms/user/ClientMenu';
 import AdminMenu from '../rooms/admin/AdminMenu';
+import MasterRoom from "../rooms/master/MasterRoom";
 
 
 export default function Header({ menu }) {
@@ -17,6 +18,18 @@ export default function Header({ menu }) {
           </div>
           <h2>Кабинет администратора</h2>
           <AdminMenu/>
+        </div>
+      </header>
+    )
+  }
+  else if (menu === 'master') {
+    return (
+      <header>
+        <div className='header-container'>
+          <div className='logo'>
+            <Link to='/'><img alt={'logo'} src={require("../img/logo-1.PNG")} /></Link>
+          </div>
+          <h2>Кабинет мастера</h2>
         </div>
       </header>
     )

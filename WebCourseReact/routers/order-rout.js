@@ -68,6 +68,19 @@ router.post('/get-orders-login', async (req, res) => {
     }
 });
 
+router.post('/get-orders-master-login', async (req, res) => {
+    try {
+        const {login} = req.body;
+        const orders = await Order.find({'master.login': login})
+
+        if (orders.length === 0) return res.status(400).json({message: 'Заказов пока что нет'})
+
+        res.status(200).json({data: orders});
+    } catch (err) {
+        res.status(500).json({message: 'Что то пошло нет так: ' + err});
+    }
+});
+
 router.put("/update-master-cost", async (req, res) => {
     try {
         const {master, _id, cost} = req.body;

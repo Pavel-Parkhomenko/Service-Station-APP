@@ -44,7 +44,8 @@ router.post('/login-empl',
       if (password !== empl.password)
         return res.status(400).json({ message: 'Сотрудника с таким паролем не существует' })
 
-      return res.status(200).json({ login: login, password: password, message: 'Вход выполнен успешно' })
+      return res.status(200).json({ login: empl.login, password: empl.password, position: empl.position,
+        message: 'Вход выполнен успешно' })
 
     }
     catch (err) {
@@ -79,6 +80,8 @@ router.get('/get-employee-master', async (req, res) => {
     res.status(500).json('Что то пошло нет так: ' + err);
   }
 });
+
+
 
 
 module.exports = router;

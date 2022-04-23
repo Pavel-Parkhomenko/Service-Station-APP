@@ -7,6 +7,7 @@ import Main from '../compsPage/Main';
 import ClientRoom from '../rooms/user/ClientRoom';
 import SingUp from './SingUp';
 import AdminRoom from '../rooms/admin/AdminRoom';
+import MasterRoom from "../rooms/master/MasterRoom";
 
 export const useRoutes = (isAuth) => {
   return (
@@ -17,6 +18,7 @@ export const useRoutes = (isAuth) => {
       <Route path="/order" element={<MakeOrder/>} />
       <Route path="/client-room" element={<ClientRoom/>} />
       <Route path="/admin-room" element={<AdminRoom/>} />
+      <Route path="/master-room" element={<MasterRoom/>} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   )

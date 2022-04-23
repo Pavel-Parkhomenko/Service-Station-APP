@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Link, Navigate} from 'react-router-dom';
 import './SingIn.css'
 import useHttp from '../hooks/httpHook'
@@ -14,6 +14,8 @@ function Authentication() {
   const {loading, request} = useHttp();
   const [errMessage, setErrMessage] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isMaster, setIsMaster] = useState(false)
+  const [isEmployee, setIsEmployee] = useState(false)
 
   let checkRegistr = useSelector(store => store.user.checkRegistr)
 
@@ -26,15 +28,18 @@ function Authentication() {
 
   async function handelSingIn() {
     let response;
-    if (!isAdmin)
-      response = await request('/auth/login', 'POST', {...form})
-    else
+    if (isEmployee) {
       response = await request('/employee/login-empl', 'POST', {...form})
+      if (response.position === 'master') setIsMaster(true);
+      else setIsAdmin(true)
+    }
+    else {
+      response = await request('/auth/login', 'POST', {...form})
+    }
 
     if (!response.hasOwnProperty('err')) {
       dispatch(changeCheckRegistr({login: form.login}))
     }
-
     setErrMessage(response.message)
   }
 
@@ -42,8 +47,8 @@ function Authentication() {
     setForm({...form, [event.target.name]: event.target.value})
   }
 
-  function isAdminHandle(event) {
-    setIsAdmin(!isAdmin);
+  function isEmployeeHandle(event) {
+    setIsEmployee(!isEmployee);
   }
 
   if (!checkRegistr) {
@@ -68,16 +73,16 @@ function Authentication() {
             <Button color="primary"><Link to="/auth/registr">Регистрация</Link></Button>
             <div>
               <span style={{color: 'gray'}}>Я являюсь сотрутдником</span>
-              <Checkbox checked={isAdmin} onChange={isAdminHandle} label="Start" labelPlacement="start"/>
+              <Checkbox checked={isEmployee} onChange={isEmployeeHandle} label="Start" labelPlacement="start"/>
             </div>
           </div>
 
         </div>
       </div>
     </div>)
-  } else if (!isAdmin)
-    return <Navigate to='/client-room'/>
-  else return <Navigate to='/admin-room'/>
+  } else if (isAdmin) return <Navigate to='/admin-room'/>
+  else if(isMaster) return <Navigate to='/master-room'/>
+  else return <Navigate to='/client-room'/>
 }
 
 export default Authentication;
