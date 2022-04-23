@@ -17,8 +17,6 @@ function AdminRoom() {
   const {request} = useHttp();
 
   const [orders, setOrders] = useState([])
-  const [status, setStatus] = useState('');
-  const [cost, setCost] = useState('');
   const [feedbacks, setFeedbacks] = useState([]);
 
   useEffect(async () => {
@@ -31,11 +29,8 @@ function AdminRoom() {
     setOrders([...response.data])
   }, [])
 
-
   async function deleteFeedbackHandle(event, id) {
-    console.log(id + " deleted")
     const response = await request('client/delete-feedback', 'PUT', {id: id})
-    console.log(response);
   }
 
   return (
@@ -49,7 +44,7 @@ function AdminRoom() {
             <Paper elevation={10}>
               {orders.map((ord, ind) => {
                 return (
-                    <OrderPanel key={ind} order={ord}/>
+                    <OrderPanel key={ord._id} order={ord}/>
                 )})}
             </Paper>
             <WorksPanel/>

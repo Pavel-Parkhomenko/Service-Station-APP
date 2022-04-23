@@ -14,7 +14,7 @@ export default function ClientOrderPanel() {
 
   useEffect(async () => {
     const response = await request('order/get-orders-login', "POST", {login: checkRegistr});
-    if(response.ok) setOrders([...response.data])
+    if(response.err !== true) setOrders([...response.data])
   }, [])
 
   if (orders.length !== 0) {

@@ -9,6 +9,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import {MenuItem} from "@mui/material";
 import {useSelector} from "react-redux";
+import ErrorMessage from "./ErrorMessage";
 
 function MakeOrder() {
 
@@ -25,6 +26,10 @@ function MakeOrder() {
   })
 
   const [marks, setMarks] = useState([])
+  const [isError, setIsError] = useState({
+    err: false,
+    message: 'default err for test'
+  })
 
   function handleInput(event) {
     setForm({...form, [event.target.name]: event.target.value})
@@ -32,6 +37,12 @@ function MakeOrder() {
 
   async function handelOrder() {
     const response = await request('/order/create', 'POST', {...form})
+    if(response.err === true){
+      setIsError({
+        err: true,
+        message: response.message
+      })
+    }
   }
 
   useEffect(async () => {
@@ -40,85 +51,88 @@ function MakeOrder() {
   }, [])
 
   return (
-    <div className='order-container-full'>
-      <div className="order-container">
-        <form action="#" method="post" id="form">
-          <h1 style={{textAlign: 'center'}}>&bull; Оформление заявки &bull;</h1>
-          <div className="underline"/>
+    <>
+      {isError.err ? <ErrorMessage setIsError={setIsError} message={isError.message} isOpen={isError.err}/> : null}
+      <div className='order-container-full'>
+        <div className="order-container">
+          <form action="#" method="post" id="form">
+            <h1 style={{textAlign: 'center'}}>&bull; Оформление заявки &bull;</h1>
+            <div className="underline"/>
 
-          <div className='row-container'>
+            <div className='row-container'>
 
-            <FormControl className='input_text'>
-              <InputLabel>Модель</InputLabel>
-              <Select defaultValue="" native name="mark" onChange={handleInput}>
-                <option unselectable='true' aria-label="None" value=""/>
-                {marks.map((m, indMark) => (
-                  <optgroup key={indMark} label={m.name}>
-                    {m.models.map((x, ind) => <option key={ind} value={x}>{x}</option>)}
-                  </optgroup>
-                ))}
-              </Select>
-            </FormControl>
+              <FormControl className='input_text'>
+                <InputLabel>Модель</InputLabel>
+                <Select defaultValue="" native name="mark" onChange={handleInput}>
+                  <option unselectable='true' aria-label="None" value=""/>
+                  {marks.map((m, indMark) => (
+                    <optgroup key={indMark} label={m.name}>
+                      {m.models.map((x, ind) => <option key={ind} value={x}>{x}</option>)}
+                    </optgroup>
+                  ))}
+                </Select>
+              </FormControl>
 
-            <TextField type='number'
-                       className='input_text'
-                       name="yearRelese"
-                       onChange={handleInput}
-                       label="Год выпуска"
-                       required
-                       defaultValue='2000'
-            />
-          </div>
-
-          <div className='row-container'>
-            <TextField
-              className='input_text'
-              name="gosnumber"
-              onChange={handleInput}
-              label="Госномер"
-              required
-            />
-
-            <FormControl className='input_text'>
-              <InputLabel>Тип двигателя</InputLabel>
-              <Select native
-                      label="Тип двигателя"
-                      onChange={handleInput}
-                      name='typeEngine'
-              >
-                <option value='Бензин'>Бензин</option>
-                <option value='Дизель'>Дизель</option>
-                <option value='Гибрид'>Гибрид</option>
-                <option value='Электро'>Электро</option>
-              </Select>
-            </FormControl>
-
-          </div>
-          <div>
-            <TextField className='fullWidth'
-                       name="problemText"
-                       onChange={handleInput}
-                       label="Опишите свою проблему"
-                       multiline
-                       rows={2}
-            />
-          </div>
-
-          <div className='btns'>
-            <Button
-              onClick={handelOrder}
-              variant="contained"
-              color="secondary"
-            >
-              Оформить
-            </Button>
-            <div>
-              <Button color="primary"><Link to="/client-room">Назад</Link></Button>
+              <TextField type='number'
+                         className='input_text'
+                         name="yearRelese"
+                         onChange={handleInput}
+                         label="Год выпуска"
+                         required
+                         defaultValue='2000'
+              />
             </div>
-          </div>
-        </form>
+
+            <div className='row-container'>
+              <TextField
+                className='input_text'
+                name="gosnumber"
+                onChange={handleInput}
+                label="Госномер"
+                required
+              />
+
+              <FormControl className='input_text'>
+                <InputLabel>Тип двигателя</InputLabel>
+                <Select native
+                        label="Тип двигателя"
+                        onChange={handleInput}
+                        name='typeEngine'
+                >
+                  <option value='Бензин'>Бензин</option>
+                  <option value='Дизель'>Дизель</option>
+                  <option value='Гибрид'>Гибрид</option>
+                  <option value='Электро'>Электро</option>
+                </Select>
+              </FormControl>
+
+            </div>
+            <div>
+              <TextField className='fullWidth'
+                         name="problemText"
+                         onChange={handleInput}
+                         label="Опишите свою проблему"
+                         multiline
+                         rows={2}
+              />
+            </div>
+
+            <div className='btns'>
+              <Button
+                onClick={handelOrder}
+                variant="contained"
+                color="secondary"
+              >
+                Оформить
+              </Button>
+              <div>
+                <Button color="primary"><Link to="/client-room">Назад</Link></Button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
 
   );
 }
