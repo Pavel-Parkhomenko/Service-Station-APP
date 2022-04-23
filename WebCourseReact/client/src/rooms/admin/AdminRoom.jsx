@@ -9,6 +9,8 @@ import AdminMenuPanel from "./AdminMenuPanel";
 import EntranceInfo from "../../components/EntranceInfo";
 import WorksPanel from "./WorksPanel";
 import Feedback from "../../components/Feedback";
+import Statistics from "./statistics/Statistics";
+import Example from "./statistics/Example";
 
 function AdminRoom() {
 
@@ -28,6 +30,7 @@ function AdminRoom() {
     const response = await request('order/get-orders', "GET");
     setOrders([...response.data])
   }, [])
+
 
   async function deleteFeedbackHandle(event, id) {
     console.log(id + " deleted")
@@ -62,6 +65,16 @@ function AdminRoom() {
                   isAdmin={true}
                   />
                 )}
+              </div>
+            </Paper>
+
+            <Paper elevation={20}>
+              <h2>Статистика</h2>
+              <h3>Диаграмма марок автомобилей на 100% заказов</h3>
+              <Statistics/>
+              <h3>Диаграмма ожидаемых заказов и реальных</h3>
+              <div>
+                <Example/>
               </div>
             </Paper>
           </div>

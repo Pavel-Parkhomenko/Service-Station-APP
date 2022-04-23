@@ -13,7 +13,7 @@ export default function AdminMenuPanel(){
           <Button color="secondary">Заказы</Button>
           <Button color="secondary">Отзывы</Button>
           <Button color="secondary">Услуги</Button>
-          <Button color="secondary">Пользователи</Button>
+          <Button color="secondary">Статистика</Button>
         </Stack>
       </Paper>
     </div>

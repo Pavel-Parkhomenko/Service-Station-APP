@@ -36,7 +36,7 @@ export default function Pay({isOpen, setOpen, numOrderOfPay, id}) {
         aria-labelledby="responsive-dialog-title"
       >
         <DialogTitle id="responsive-dialog-title">
-          {`Оплата заказа № ${numOrderOfPay}`}
+          {`Оплата заказа № ${id}`}
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
